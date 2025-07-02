@@ -159,27 +159,15 @@
                     cvv: cvv
                 };
 
-                // Enviar los datos a tu servidor para procesar el pago
-                fetch('https://tu-servidor.com/processar-pagamento', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        // Redirigir a la página de éxito de pago
-                        window.location.href = 'https://tu-servidor.com/sucesso';
-                    } else {
-                        alert('Ocorreu um erro ao processar o pagamento.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Ocorreu um erro ao processar o pagamento.');
-                });
+                // Armazena os dados em um campo oculto
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'participantData';
+                hiddenInput.value = JSON.stringify(data);
+                form.appendChild(hiddenInput);
+
+                // Redireciona para a página de obrigado
+                window.location.href = 'obrigado.html';
             });
         });
     </script>
