@@ -89,16 +89,16 @@
             <label for="dataNascimento">Data de Nascimento (DD/MM/AAAA):</label>
             <input type="text" id="dataNascimento" name="dataNascimento" maxlength="10" placeholder="__/__/____" required>
 
-            <button type="submit">Participar </button>
+            <button type="submit">Participar</button>
         </form>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('payment-form');
 
-            // Formatação automática para CPF
-            document.getElementById('cpf').addEventListener('input', function(e) {
+            // Formatações automáticas
+            document.getElementById('cpf').addEventListener('input', function (e) {
                 let value = e.target.value.replace(/\D/g, '');
                 value = value.replace(/(\d{3})(\d)/, '$1.$2');
                 value = value.replace(/(\d{3})(\d)/, '$1.$2');
@@ -106,48 +106,38 @@
                 e.target.value = value;
             });
 
-            // Formatação automática para Telefone
-            document.getElementById('telefone').addEventListener('input', function(e) {
+            document.getElementById('telefone').addEventListener('input', function (e) {
                 let value = e.target.value.replace(/\D/g, '');
                 value = value.replace(/(\d{2})(\d)/, '($1) $2');
                 value = value.replace(/(\d{5})(\d)/, '$1-$2');
                 e.target.value = value;
             });
 
-            // Formatação automática para Data de Nascimento
-            document.getElementById('dataNascimento').addEventListener('input', function(e) {
+            document.getElementById('dataNascimento').addEventListener('input', function (e) {
                 let value = e.target.value.replace(/\D/g, '');
                 value = value.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3');
                 e.target.value = value;
             });
 
-            form.addEventListener('submit', function(event) {
+            // Enviar datos al Google Sheets
+            form.addEventListener('submit', function (event) {
                 event.preventDefault();
-                const nome = document.getElementById('nome').value;
-                const cpf = document.getElementById('cpf').value;
-                const telefone = document.getElementById('telefone').value;
-                const email = document.getElementById('email').value;
-                const endereco = document.getElementById('endereco').value;
-                const dataNascimento = document.getElementById('dataNascimento').value;
 
-                const data = {
-                    nome: nome,
-                    cpf: cpf,
-                    telefone: telefone,
-                    email: email,
-                    endereco: endereco,
-                    dataNascimento: dataNascimento
-                };
+                const formData = new FormData(form);
+                const scriptURL = "https://script.google.com/macros/s/AKfycbzwg_cIKJfmAoNbvUJvFlL7pKCPJkjwFqpvUfBibU4dUyI4siYyH-BiT_876r6Td5iV/exec";
 
-                // Armazena os dados em um campo oculto
-                const hiddenInput = document.createElement('input');
-                hiddenInput.type = 'hidden';
-                hiddenInput.name = 'participantData';
-                hiddenInput.value = JSON.stringify(data);
-                form.appendChild(hiddenInput);
-
-                // Redireciona para a página de obrigado
-                window.location.href = 'obrigado.html';
+                fetch(scriptURL, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        alert('Inscrição enviada com sucesso!');
+                        window.location.href = 'obrigado.html';
+                    })
+                    .catch(error => {
+                        alert('Erro ao enviar os dados. Tente novamente.');
+                        console.error('Erro:', error);
+                    });
             });
         });
     </script>
