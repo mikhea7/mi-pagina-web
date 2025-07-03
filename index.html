@@ -1,175 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sorteio Polo Track 0km</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Obrigado pela sua inscrição!</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
       background: linear-gradient(to right, #007BFF, #0056b3);
-      color: #333;
-    }
-    header {
-      background: #fff;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
-      padding: 30px 20px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
     }
-    header h1 {
-      margin: 0;
+    .box {
+      background: white;
+      color: #333;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
       font-size: 24px;
+      margin-bottom: 15px;
       color: #007BFF;
     }
-    header p {
+    p {
       font-size: 16px;
-      margin-top: 8px;
+      margin-bottom: 25px;
     }
-    .container {
-      background: #fff;
-      max-width: 480px;
-      margin: 30px auto;
-      padding: 30px 20px;
-      border-radius: 10px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #333;
-    }
-    label {
-      font-weight: 600;
-      margin-top: 15px;
-      display: block;
-    }
-    input {
-      width: 100%;
-      padding: 10px 12px;
-      margin-top: 5px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-    button {
-      margin-top: 25px;
-      padding: 12px;
-      width: 100%;
+    .btn {
       background-color: #007BFF;
       color: white;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 8px;
       font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
       transition: background-color 0.3s ease;
+      display: inline-block;
     }
-    button:hover {
+    .btn:hover {
       background-color: #0056b3;
-    }
-    .success {
-      text-align: center;
-      color: green;
-      font-weight: bold;
-      margin-top: 15px;
-    }
-    @media screen and (max-width: 480px) {
-      header h1 {
-        font-size: 20px;
-      }
-      .container {
-        margin: 20px 15px;
-        padding: 25px 15px;
-      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>⚡ Sorteio de um Polo Track 0km ⚡</h1>
-    <p>Participe por apenas R$1 e concorra a um carro novo!</p>
-  </header>
-
-  <div class="container">
-    <h2>Inscreva-se agora</h2>
-    <form id="payment-form">
-      <label for="nome">Nome Completo:</label>
-      <input type="text" id="nome" name="nome" required>
-
-      <label for="cpf">CPF:</label>
-      <input type="text" id="cpf" name="cpf" maxlength="14" required>
-
-      <label for="telefone">Telefone:</label>
-      <input type="tel" id="telefone" name="telefone" maxlength="15" required>
-
-      <label for="email">E-mail:</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="endereco">Endereço:</label>
-      <input type="text" id="endereco" name="endereco" required>
-
-      <label for="dataNascimento">Data de Nascimento:</label>
-      <input type="text" id="dataNascimento" name="dataNascimento" maxlength="10" required>
-
-      <button type="submit">Quero Participar!</button>
-      <div class="success" id="success-message" style="display:none;">✅ Enviado com sucesso!</div>
-    </form>
+  <div class="box">
+    <h1>✅ Inscrição recebida com sucesso!</h1>
+    <p>Obrigado por participar do sorteio do Polo Track 0km.<br>
+    Seus dados foram registrados com sucesso.</p>
+    <a class="btn" href="index.html">Voltar para o início</a>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const form = document.getElementById('payment-form');
-      const successMessage = document.getElementById('success-message');
-
-      document.getElementById('cpf').addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, '');
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d{2})/, '$1-$2');
-        e.target.value = value;
-      });
-
-      document.getElementById('telefone').addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, '');
-        value = value.replace(/(\d{2})(\d)/, '($1) $2');
-        value = value.replace(/(\d{5})(\d)/, '$1-$2');
-        e.target.value = value;
-      });
-
-      document.getElementById('dataNascimento').addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, '');
-        value = value.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3');
-        e.target.value = value;
-      });
-
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-        const scriptURL = "https://script.google.com/macros/s/AKfycbzwg_cIKJfmAoNbvUJvFlL7pKCPJkjwFqpvUfBibU4dUyI4siYyH-BiT_876r6Td5iV/exec";
-
-        fetch(scriptURL, {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => {
-          successMessage.style.display = 'block';
-          form.reset();
-          setTimeout(() => {
-            successMessage.style.display = 'none';
-          }, 4000);
-        })
-        .catch(error => {
-          alert('Erro ao enviar os dados. Tente novamente.');
-          console.error('Erro:', error);
-        });
-      });
-    });
-  </script>
 </body>
 </html>
