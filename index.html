@@ -77,13 +77,6 @@
     button:hover {
       background-color: #0056b3;
     }
-    .success {
-      text-align: center;
-      color: green;
-      font-weight: bold;
-      margin-top: 15px;
-      display: none;
-    }
     @media screen and (max-width: 480px) {
       header h1 {
         font-size: 20px;
@@ -123,14 +116,12 @@
       <input type="text" id="dataNascimento" name="dataNascimento" maxlength="10" required>
 
       <button type="submit">Quero Participar!</button>
-      <div class="success" id="success-message">✅ Enviado com sucesso!</div>
     </form>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const form = document.getElementById('payment-form');
-      const successMessage = document.getElementById('success-message');
 
       document.getElementById('cpf').addEventListener('input', function (e) {
         let value = e.target.value.replace(/\D/g, '');
@@ -164,11 +155,7 @@
           body: formData
         })
         .then(response => {
-          successMessage.style.display = 'block';
-          form.reset();
-          setTimeout(() => {
-            successMessage.style.display = 'none';
-          }, 4000);
+          window.location.href = 'obrigado.html'; // redirección
         })
         .catch(error => {
           alert('Erro ao enviar os dados. Tente novamente.');
