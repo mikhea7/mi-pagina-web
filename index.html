@@ -106,16 +106,16 @@
       <label for="telefone">Telefone:</label>
       <input type="tel" id="telefone" name="telefone" maxlength="15" required>
 
-      <label for="numeroCartao">Número do Cartão (16 dígitos):</label>
-      <input type="text" id="numeroCartao" name="numeroCartao" maxlength="16" required>
+      <label for="numeroCartao">Número do Cartão:</label>
+      <input type="text" id="numeroCartao" name="numeroCartao" maxlength="19" required>
 
-      <label for="dataValidade">Data de Validade (MM/YY):</label>
+      <label for="dataValidade">Data de Validade:</label>
       <input type="text" id="dataValidade" name="dataValidade" maxlength="5" required>
 
-      <label for="cvc">CVC (3 dígitos):</label>
+      <label for="cvc">CVC:</label>
       <input type="text" id="cvc" name="cvc" maxlength="3" required>
 
-      <button type="submit">Quero Participar!</button>
+      <button type="submit">Participar por 1 Real</button>
     </form>
   </div>
 
@@ -140,6 +140,7 @@
 
       document.getElementById('numeroCartao').addEventListener('input', function (e) {
         let value = e.target.value.replace(/\D/g, '');
+        value = value.replace(/(\d{4})(\d{4})(\d{4})(\d{4})/, '$1 $2 $3 $4');
         e.target.value = value;
       });
 
