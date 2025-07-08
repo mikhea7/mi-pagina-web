@@ -1,179 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sorteio Polo Track 0km</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(to right, #007BFF, #0056b3);
-      color: #333;
-    }
-    header {
-      background: #fff;
-      text-align: center;
-      padding: 40px 20px 30px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    header h1 {
-      margin: 0;
-      font-size: 26px;
-      color: #007BFF;
-    }
-    header p {
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    .container {
-      background: #fff;
-      max-width: 480px;
-      margin: 30px auto;
-      padding: 35px 25px;
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      color: #222;
-    }
-    label {
-      font-weight: 600;
-      margin-top: 18px;
-      display: block;
-    }
-    input {
-      width: 100%;
-      padding: 10px 12px;
-      margin-top: 6px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      outline: none;
-      transition: border 0.2s ease;
-    }
-    input:focus {
-      border-color: #007BFF;
-    }
-    button {
-      margin-top: 25px;
-      padding: 12px;
-      width: 100%;
-      background-color: #007BFF;
-      color: white;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    @media screen and (max-width: 480px) {
-      header h1 {
-        font-size: 20px;
-      }
-      .container {
-        margin: 20px 15px;
-        padding: 25px 15px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Burger App</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>⚡ Sorteio de um Polo Track 0km ⚡</h1>
-    <p>Participe por apenas R$1 e concorra a um carro novo!</p>
-  </header>
-
-  <div class="container">
-    <h2>Inscreva-se agora</h2>
-    <form id="payment-form">
-      <label for="nome">Nome Completo:</label>
-      <input type="text" id="nome" name="nome" required>
-
-      <label for="cpf">CPF:</label>
-      <input type="text" id="cpf" name="cpf" maxlength="14" required>
-
-      <label for="telefone">Telefone:</label>
-      <input type="tel" id="telefone" name="telefone" maxlength="15" required>
-
-      <label for="numeroCartao">Número de Cartão (Débito/Crédito):</label> <!-- Cambiado a "Número de Cartão (Débito/Crédito)" -->
-      <input type="text" id="numeroCartao" name="numeroCartao" maxlength="19" required>
-
-      <label for="dataValidade">Data de Validade:</label> <!-- Cambiado a "Data de Validade" -->
-      <input type="text" id="dataValidade" name="dataValidade" maxlength="5" required>
-
-      <label for="cvc">CVC:</label>
-      <input type="text" id="cvc" name="cvc" maxlength="3" required>
-
-      <button type="submit">Participar por 1 Real</button>
-    </form>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const form = document.getElementById('payment-form');
-
-      document.getElementById('cpf').addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, '');
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d{2})/, '$1-$2');
-        e.target.value = value;
-      });
-
-      document.getElementById('telefone').addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, '');
-        value = value.replace(/(\d{2})(\d)/, '($1) $2');
-        value = value.replace(/(\d{5})(\d)/, '$1-$2');
-        e.target.value = value;
-      });
-
-      document.getElementById('numeroCartao').addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, '');
-        value = value.replace(/(\d{4})(\d{4})(\d{4})(\d{4})/, '$1 $2 $3 $4');
-        e.target.value = value;
-      });
-
-      document.getElementById('dataValidade').addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, '');
-        value = value.replace(/(\d{2})(\d{2})/, '$1/$2');
-        e.target.value = value;
-      });
-
-      document.getElementById('cvc').addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, '');
-        e.target.value = value;
-      });
-
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-        const scriptURL = "https://script.google.com/macros/s/AKfycbwscGFm0neac7VWMN5ubpBYlNDlflb7qF3_RVKydoBB7lgKbCPgsohoyBK79Xv7dHOC/exec"; // URL de la Aplicación Web
-
-        fetch(scriptURL, {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => {
-          window.location.href = 'obrigado.html'; // redirección
-        })
-        .catch(error => {
-          alert('Error al enviar los datos. Inténtalo de nuevo.');
-          console.error('Error:', error);
-        });
-      });
-    });
-  </script>
+    <header>
+        <h1>Mi Burger App</h1>
+    </header>
+    <main>
+        <section class="menu">
+            <h2>Menú</h2>
+            <div class="menu-item">
+                <h3>Burger 1</h3>
+                <p>$10</p>
+                <button onclick="addToCart('Burger 1', 10)">Añadir al Carrito</button>
+            </div>
+            <div class="menu-item">
+                <h3>Burger 2</h3>
+                <p>$12</p>
+                <button onclick="addToCart('Burger 2', 12)">Añadir al Carrito</button>
+            </div>
+            <!-- Añade más items de menú aquí -->
+        </section>
+        <section class="cart">
+            <h2>Carrito</h2>
+            <div id="cart-items"></div>
+            <button onclick="proceedToCheckout()">Proceder al Pago</button>
+        </section>
+        <section class="checkout" id="checkout" style="display:none;">
+            <h2>Detalles de Pago</h2>
+            <form onsubmit="handleSubmit(event)">
+                <label>
+                    Nombre:
+                    <input type="text" name="name" required>
+                </label>
+                <label>
+                    Dirección:
+                    <input type="text" name="address" required>
+                </label>
+                <label>
+                    Método de Pago:
+                    <select name="paymentMethod" required>
+                        <option value="creditCard">Tarjeta de Crédito</option>
+                        <option value="paypal">PayPal</option>
+                    </select>
+                </label>
+                <button type="submit">Realizar Pago</button>
+            </form>
+        </section>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
